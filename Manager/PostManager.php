@@ -7,7 +7,6 @@ use App\Entity\Post;
 class PostManager extends BaseManager
 {
 
-
     /**
      * @return Post[]
      */
