@@ -2,55 +2,56 @@
 
 namespace App\Manager;
 
-class AuthorManager extends BaseManager
+class authorManager extends BaseManager
 {
-
-}
-
-
-require "Personnage.php";
-
-class PersonnageManager extends BaseManager
-{
-    public function getAllPersonnages()
+    public function getAllAuthors()
     {
-        $req = "SELECT * FROM personnage";
-        $result = $this->bdd->query($req);
+        $req = "SELECT * FROM user"; 
+        $result = $this->bdd->query($req); 
         return $result;
     }
 
-    public function getPersonnageById($id)
+    public function getAuthorById(int $id)
     {
-        $req = "SELECT * FROM personnage where id=:id";
+        $req = "SELECT * FROM user where id=:id"; 
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);  
         return $result->execute();
     }
 
-    public function getAllPersonnagesExceptYours($id)
+    public function updateAuthor(Author $author)
     {
-        $req = "SELECT * FROM personnage EXCEPT SELECT * FROM personnage where id=:id";
+        $req = "UPDATE `user` SET `firstname`=':firstname',`lastname`=':lastname',`email`=':email',`admin`=:admin,`password`=':password' WHERE id=:id";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->bindValue(':firstname', $author->getFirstname(), PDO::PARAM_STR);
+        $result->bindValue(':lastname', $author->getLastname(), PDO::PARAM_STR);
+        $result->bindValue(':email', $author->getEmail(), PDO::PARAM_STR);
+        $result->bindValue(':admin', $author->getAdmin(), PDO::PARAM_INT);
+        $result->bindValue(':password', $author->getPassword(), PDO::PARAM_STR);
+        $result->bindValue(':id', $author->getId(), PDO::PARAM_INT);
         return $result->execute();
     }
 
-    public function addPersonnage(Personnage $perso, $classe)
+    public function addAuthor(Author $author)
     {
-        $req = "INSERT INTO personnage (`name`, `health`, `strength`, `defense`, `state`, `classe`) VALUES (:name,:health,:strength,:defense,:state, :classe)";
+        $req="INSERT INTO `user`(`firstname`, `lastname`, `email`, `admin`, `password`) VALUES (:firstname,:lastname,:email,:admin,:password)"
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':name', $perso->getName(), PDO::PARAM_STR);
-        $result->bindValue(':health', $perso->getHealth(), PDO::PARAM_INT);
-        $result->bindValue(':strength', $perso->getStrength(), PDO::PARAM_INT);
-        $result->bindValue(':defense', $perso->getDefense(), PDO::PARAM_INT);
-        $result->bindValue(':state', $perso->getState(), PDO::PARAM_BOOL);
-        $result->bindValue(':classe', $classe, PDO::PARAM_STR);
+        $result->bindValue(':firstname', $author->getFirstname(), PDO::PARAM_STR);
+        $result->bindValue(':lastname', $author->getLastname(), PDO::PARAM_STR);
+        $result->bindValue(':email', $author->getEmail(), PDO::PARAM_STR);
+        $result->bindValue(':admin', $author->getAdmin(), PDO::PARAM_INT);
+        $result->bindValue(':password', $author->getPassword(), PDO::PARAM_STR);
+        $result->bindValue(':id', $author->getId(), PDO::PARAM_INT);
         return $result->execute();
     }
 
-    public function attackPersonnage($id)
+    public function deleteAuthor(int $id)
     {
-        $req = "UPDATE `personnage` SET `health`=:health WHERE id=:id";
+        $req = "DELETE FROM `user` WHERE id=:id";
+        $result = $this->bdd->prepare($req);
+        $result->bindValue(':id', $id, PDO::PARAM_INT); 
+        return $result->execute(); 
     }
-
 }
+
+

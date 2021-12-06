@@ -1,6 +1,6 @@
 Commandes pour créer notre BDD
 
-CREATE TABLE `final_php`.`user`
+CREATE TABLE `user`
 (
 `id` INT(30) NOT NULL AUTO_INCREMENT ,
 `firstname` VARCHAR(30) NOT NULL ,
