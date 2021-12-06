@@ -43,4 +43,12 @@ class commentManager extends BaseManager
         return $result->execute();
     }
 
+    public function addComment(\Comment $comment)
+    {
+        $req="INSERT INTO `post`(`texte`) VALUES (:texte)";
+        $result = $this->bdd->prepare($req);
+        $result->bindValue(':texte', $comment->getTexte(), PDO::PARAM_STR);
+        return $result->execute();
+    }
+
 }
