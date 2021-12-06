@@ -28,3 +28,4 @@ FOREIGN KEY (idauthor) REFERENCES user(id),
 FOREIGN KEY (idpost) REFERENCES post(id)
 )
 
+test
