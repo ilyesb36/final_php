@@ -4,12 +4,12 @@ namespace App\Entity;
 
 class Author
 {
-    private $firstName;
-    private $lastName;
-    private $email;
-    private $password;
-    private $admin;
-    private $id;
+    private string $firstName;
+    private string $lastName;
+    private string $email;
+    private string $password;
+    private int $admin;
+    private int $id;
 
     public function __construct($firstName, $lastName, $email, $password, $admin)
     {

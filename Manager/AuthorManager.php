@@ -34,7 +34,7 @@ class authorManager extends BaseManager
 
     public function addAuthor(Author $author)
     {
-        $req="INSERT INTO `user`(`firstname`, `lastname`, `email`, `admin`, `password`) VALUES (:firstname,:lastname,:email,:admin,:password)"
+        $req="INSERT INTO `user`(`firstname`, `lastname`, `email`, `admin`, `password`) VALUES (:firstname,:lastname,:email,:admin,:password)";
         $result = $this->bdd->prepare($req);
         $result->bindValue(':firstname', $author->getFirstName(), PDO::PARAM_STR);
         $result->bindValue(':lastname', $author->getLastName(), PDO::PARAM_STR);

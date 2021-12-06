@@ -23,6 +23,7 @@ CREATE TABLE `comment` (
 `texte` VARCHAR(30) NOT NULL ,
 `idauthor` INT(30) NOT NULL ,
 `idpost` INT(30) NOT NULL ,
+`date` \DATETIME ,
 PRIMARY KEY (`id`),
 FOREIGN KEY (idauthor) REFERENCES user(id),
 FOREIGN KEY (idpost) REFERENCES post(id)

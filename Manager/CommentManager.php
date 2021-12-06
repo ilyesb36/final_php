@@ -20,9 +20,9 @@ class commentManager extends BaseManager
 
     public function updateComment(Comment $comment)
     {
-        $req = "UPDATE `comment` SET `texte`=:texte WHERE id=:id"
+        $req = "UPDATE `comment` SET `texte`=:texte WHERE id=:id";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':texte', $->getTexte(), PDO::PARAM_STR);
+        $result->bindValue(':texte', $comment->getTexte(), PDO::PARAM_STR);
         $result->bindValue(':id', $comment->getId(), PDO::PARAM_INT);
         return $result->execute();
     }
