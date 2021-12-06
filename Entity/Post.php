@@ -1,72 +1,50 @@
 <?php
 
 namespace App\Entity;
+use DateTime;
+class Post {
 
-class Post
-{
-    private int $id;
-    private \DateTime $date;
-    private string $title;
-    private string $content;
-    private int $authorId;
+    private $id;
+    private $titre;
+    private $texte;
+    private $date;
+    private $idauthor;
 
-    public function __constructor($id, $date, $title, $content, $authorId)
-    {
-        $this->setId($id);
-        $this->setDate();
-        $this->seTitle($title);
-        $this->setContent($content);
-        $this->setAuthorId($authorId);
-    }
-
-    public function getId(): int
-    {
+    public function getId(){
         return $this->id;
     }
 
-    public function setId(int $id): void
-    {
+    public function setId(int $id){
         $this->id = $id;
     }
 
-    public function getDate(): \DateTime
-    {
+    public function getTitre(){
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre){
+        $this->titre = $titre;
+    }
+    public function getTexte(){
+        return $this->texte;
+    }
+
+    public function setTexte(string $texte){
+        $this->texte = $texte;
+    }
+    public function getDate(){
         return $this->date;
     }
 
-    public function setDate(): void
-    {
-        $this->date = date('Y-m-d H:i:s');
+    public function setDate(DateTime $date){
+        $this->date = $date;
+    }
+    public function getIdUser(){
+        return $this->idauthor;
     }
 
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): void
-    {
-        $this->content = $content;
-    }
-
-    public function getAuthorId(): int
-    {
-        return $this->authorId;
-    }
-
-    public function setAuthorId(int $authorId): void
-    {
-        $this->authorId = $authorId;
+    public function setIdUser(int $idauthor){
+        $this->idauthor = $idauthor;
     }
 
 }
