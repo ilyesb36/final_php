@@ -1,0 +1,30 @@
+Commandes pour créer notre BDD
+
+CREATE TABLE `final_php`.`user`
+(
+`id` INT(30) NOT NULL AUTO_INCREMENT ,
+`firstname` VARCHAR(30) NOT NULL ,
+`lastname` VARCHAR(30) NOT NULL ,
+`email` VARCHAR(30) NOT NULL ,
+`admin` BOOLEAN NOT NULL ,
+`password` VARCHAR(30) NOT NULL , PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `post` (
+`id` INT(30) NOT NULL AUTO_INCREMENT ,
+`titre` VARCHAR(30) NOT NULL ,
+`texte` VARCHAR(30) NOT NULL ,
+`date` DATETIME NOT NULL ,
+`idauthor` INT(30) NOT NULL , PRIMARY KEY (`id`), FOREIGN KEY (idauthor) REFERENCES user(id)
+)
+
+CREATE TABLE `comment` (
+`id` INT(30) NOT NULL AUTO_INCREMENT ,
+`texte` VARCHAR(30) NOT NULL ,
+`idauthor` INT(30) NOT NULL ,
+`idpost` INT(30) NOT NULL ,
+PRIMARY KEY (`id`),
+FOREIGN KEY (idauthor) REFERENCES user(id),
+FOREIGN KEY (idpost) REFERENCES post(id)
+)
+
