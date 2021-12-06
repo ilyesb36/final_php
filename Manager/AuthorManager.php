@@ -23,8 +23,8 @@ class authorManager extends BaseManager
     {
         $req = "UPDATE `user` SET `firstname`=':firstname',`lastname`=':lastname',`email`=':email',`admin`=:admin,`password`=':password' WHERE id=:id";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':firstname', $author->getFirstname(), PDO::PARAM_STR);
-        $result->bindValue(':lastname', $author->getLastname(), PDO::PARAM_STR);
+        $result->bindValue(':firstname', $author->getFirstName(), PDO::PARAM_STR);
+        $result->bindValue(':lastname', $author->getLastName(), PDO::PARAM_STR);
         $result->bindValue(':email', $author->getEmail(), PDO::PARAM_STR);
         $result->bindValue(':admin', $author->getAdmin(), PDO::PARAM_INT);
         $result->bindValue(':password', $author->getPassword(), PDO::PARAM_STR);
@@ -36,8 +36,8 @@ class authorManager extends BaseManager
     {
         $req="INSERT INTO `user`(`firstname`, `lastname`, `email`, `admin`, `password`) VALUES (:firstname,:lastname,:email,:admin,:password)"
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':firstname', $author->getFirstname(), PDO::PARAM_STR);
-        $result->bindValue(':lastname', $author->getLastname(), PDO::PARAM_STR);
+        $result->bindValue(':firstname', $author->getFirstName(), PDO::PARAM_STR);
+        $result->bindValue(':lastname', $author->getLastName(), PDO::PARAM_STR);
         $result->bindValue(':email', $author->getEmail(), PDO::PARAM_STR);
         $result->bindValue(':admin', $author->getAdmin(), PDO::PARAM_INT);
         $result->bindValue(':password', $author->getPassword(), PDO::PARAM_STR);
