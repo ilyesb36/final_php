@@ -4,11 +4,11 @@ namespace App\Entity;
 use DateTime;
 class Post {
 
-    private $id;
-    private $titre;
-    private $texte;
-    private $date;
-    private $idauthor;
+    private int $id;
+    private string $titre;
+    private string $texte;
+    private DateTime $date;
+    private int $idauthor;
 
     public function getId(){
         return $this->id;

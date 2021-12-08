@@ -2,14 +2,15 @@
 
 namespace App\Manager;
 use App\Entity\Post;
-use App\Model\BaseManager;
+
 class PostManager extends BaseManager
 {
     public function getAllPosts()
     {
         $req = "SELECT * FROM post";
         $result = $this->bdd->query($req);
-        return $result;
+        $result->execute();
+        return $result->fetchAll();
     }
 
     public function getPostById(int $id)

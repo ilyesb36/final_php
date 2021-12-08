@@ -1,5 +1,5 @@
 <?php
-namespace App\Manager;
+namespace App\Model;
 
 class commentManager extends BaseManager
 {

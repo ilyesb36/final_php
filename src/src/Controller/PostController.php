@@ -15,14 +15,13 @@ class PostController extends BaseController
     public function executeIndex()
     {
         $postManager = new PostManager(PDOFactory::getMysqlConnection());
-        $posts = $postManager->getAllPosts();
+        $content = $postManager->getAllPosts();
 
+      // $this->render('home.php', $posts, 'title');
         $this->render(
             'home.php',
             [
-                'posts' => $posts,
-                'user' => new Author(),
-                'test' => 'je suis un test'
+                'posts' => $content
             ],
             'Home page'
         );

@@ -9,7 +9,7 @@ class Router
     public function getController()
     {
         $xml = new \DOMDocument();
-        $xml->load(__DIR__ . './../Config/routes.xml');
+        $xml->load(__DIR__ . './../../Config/routes.xml');
         $routes = $xml->getElementsByTagName('route');
 
         isset($_GET['p']) ? $path = strtolower(htmlspecialchars($_GET['p'])) : $path = '/';
@@ -27,7 +27,7 @@ class Router
                 }
                 return new $controllerClass($action, $params);
             }
-
+            // $_SERVER['REQUEST_METHOD']
 
         }
 

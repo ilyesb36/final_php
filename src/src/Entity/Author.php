@@ -6,16 +6,16 @@ class Author
 {
     private string $firstName;
     private string $lastName;
-    private string $email;
+    private string $pseudo;
     private string $password;
     private int $admin;
     private int $id;
 
-    public function __construct($firstName, $lastName, $email, $password, $admin)
+    public function __construct($firstName, $lastName, $pseudo, $password, $admin)
     {
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
-        $this->setEmail($email);
+        $this->setPseudo($pseudo);
         $this->setPassword($password);
         $this->setAdmin($admin);
     }
@@ -42,14 +42,14 @@ class Author
         $this->lastName = $lastName;
     }
 
-    public function getEmail()
+    public function getPseudo()
     {
-        return $this->email;
+        return $this->pseudo;
     }
 
-    public function setEmail($email): void
+    public function setPseudo($pseudo): void
     {
-        $this->email = $email;
+        $this->pseudo = $pseudo;
     }
 
     public function getPassword()
