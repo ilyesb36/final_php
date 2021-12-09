@@ -7,15 +7,17 @@ class Author
     private string $firstName;
     private string $lastName;
     private string $pseudo;
+    private string $email;
     private string $password;
     private int $admin;
     private int $id;
 
-    public function __construct($firstName, $lastName, $pseudo, $password, $admin)
+    public function __construct($firstName, $lastName, $pseudo, $email, $password, $admin)
     {
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
         $this->setPseudo($pseudo);
+        $this->setEmail($email);
         $this->setPassword($password);
         $this->setAdmin($admin);
     }
@@ -32,6 +34,15 @@ class Author
         $this->firstName = $firstName;
     }
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
     public function getLastName()
     {
         return $this->lastName;

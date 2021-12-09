@@ -10,10 +10,43 @@ use App\Manager\AuthorManager;
 class SecurityController extends BaseController
 {
 
-    public function getLogin()
+    public function getRegister()
+    {
+        $this->render(
+            'register.php',
+            [],
+            'Register page'
+        );
+
+    }
+
+    public function postRegister()
     {
         $authors = new AuthorManager(PDOFactory::getMysqlConnection());
 
+        $firstname = $_POST["firstname"];
+        $lastname = $_POST["lastname"];
+        $pseudo = $_POST["pseudo"];
+        $email = $_POST["email"];
+        $pw = $_POST["pw"];
+
+        if(!empty($_POST['admin'])) {
+            $admin = 1;
+        }
+        else {
+            $admin = 0;
+        }
+
+        $auth = new Author($firstname,$lastname, $pseudo, $email, $pw, $admin);
+
+        $authors->addAuthor($auth);
+        $_SESSION["isAuthor"] = 1;
+        $_SESSION["isAdmin"] = $authors->isAdmin($pseudo, $pw);
+        header('Location:/');
+    }
+
+    public function getLogin()
+    {
         $this->render(
             'login.php',
             [],
@@ -30,10 +63,11 @@ class SecurityController extends BaseController
         $_SESSION["isAuthor"] = $authors->userExist($_POST["pseudo"], $_POST["password"]);
         $_SESSION["isAdmin"] = $authors->isAdmin($_POST["pseudo"], $_POST["password"]);
 
-        header('Location:/');
-        exit;
-        
+        var_dump($_SESSION["perId"]);
+        // header('Location:/');
+        // exit;
     }
+
     public function getLogout()
     {
 

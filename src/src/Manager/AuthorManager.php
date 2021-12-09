@@ -37,15 +37,17 @@ class AuthorManager extends BaseManager
 
     public function addAuthor(Author $author)
     {
-        $req = "INSERT INTO `user`(`firstname`, `lastname`, `pseudo`, `admin`, `password`) VALUES (:firstname,:lastname,:pseudo,:admin,:password)";
+        $req = "INSERT INTO `user`(`firstname`, `lastname`, `pseudo`, `admin`, `password` ,`email`) VALUES (:firstname,:lastname,:pseudo,:admin,:password,:email)";
         $result = $this->bdd->prepare($req);
         $result->bindValue(':firstname', $author->getFirstName(), PDO::PARAM_STR);
         $result->bindValue(':lastname', $author->getLastName(), PDO::PARAM_STR);
         $result->bindValue(':pseudo', $author->getPseudo(), PDO::PARAM_STR);
         $result->bindValue(':admin', $author->getAdmin(), PDO::PARAM_INT);
         $result->bindValue(':password', $author->getPassword(), PDO::PARAM_STR);
-        $result->bindValue(':id', $author->getId(), PDO::PARAM_INT);
-        return $result->execute();
+        $result->bindValue(':email', $author->getEmail(), PDO::PARAM_STR);
+        $result->execute();
+        $_SESSION["perId"] = $this->bdd->lastInsertId();
+        return $result;
     }
 
     public function deleteAuthor(int $id)
@@ -73,11 +75,12 @@ class AuthorManager extends BaseManager
 
     public function userExist($login, $mdp)
     {
-        $req = "SELECT * from `user` WHERE pseudo=:login and password=:mdp";
+        $req = "SELECT id from `user` WHERE pseudo=:login and password=:mdp LIMIT 1";
         $result = $this->bdd->prepare($req);
         $result->bindValue(':login', $login, PDO::PARAM_STR);
         $result->bindValue(':mdp', $mdp, PDO::PARAM_INT);
         $result->execute();
+        $_SESSION["perId"] = $result->fetch();
 
 
         if ($result->rowCount() > 0) {
