@@ -64,7 +64,7 @@ class AuthorManager extends BaseManager
         $result->bindValue(':mdp', $mdp, PDO::PARAM_STR);
         $result->execute();
 
-        var_dump($result);
+        var_dump($result); 
 
         if ($result->rowCount() > 1) {
             return true;
@@ -82,7 +82,7 @@ class AuthorManager extends BaseManager
         $result->execute();
 
         var_dump($result);
-        die;
+        die;   
 
         if ($result->rowCount() > 1) {
             return true;
@@ -91,4 +91,5 @@ class AuthorManager extends BaseManager
         }
     }
 }
+
 

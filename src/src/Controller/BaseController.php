@@ -23,7 +23,7 @@ abstract class BaseController
         $view = $this->viewsDir . $template;
 
         foreach ($arguments as $key => $value) {
-            ${$key} = $value;
+            ${$key} = $value; 
         }
 
 
@@ -34,4 +34,4 @@ abstract class BaseController
         exit;
 
     }
-}
+}   
