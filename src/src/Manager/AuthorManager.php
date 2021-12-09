@@ -65,10 +65,8 @@ class AuthorManager extends BaseManager
         $result->execute();
 
         if ($result->rowCount() > 0) {
-            print("ADMIN" . $result->rowCount());
             return true;
         } else {
-            print("ADMIN" . $result->rowCount());
             return false;
         }
     }
@@ -83,10 +81,8 @@ class AuthorManager extends BaseManager
 
 
         if ($result->rowCount() > 0) {
-            print("USER" . $result->rowCount());
             return true;
         } else {
-            print("USER" . $result->rowCount());
             return false;
         }
     }

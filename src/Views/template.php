@@ -23,7 +23,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
             </ul>
 
 
@@ -52,7 +52,8 @@
 <?php endif; ?>
 
 <div class="container">
-    <?= $content; ?>
+    <?php echo "Salut Utilisateur numéro  ".$_SESSION["isAuthor"] ?>
+    <?= $content?>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

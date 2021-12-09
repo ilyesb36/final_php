@@ -30,26 +30,18 @@ class SecurityController extends BaseController
         $_SESSION["isAuthor"] = $authors->userExist($_POST["pseudo"], $_POST["password"]);
         $_SESSION["isAdmin"] = $authors->isAdmin($_POST["pseudo"], $_POST["password"]);
 
-        var_dump($_SESSION["isAuthor"]);
-        $this->render(
-            'login.php',
-            [],
-            'Login page'
-        );
+        header('Location:/');
+        exit;
         
     }
-    public function postLogout()
+    public function getLogout()
     {
 
         unset($_SESSION['isAuthor']);
         unset($_SESSION['isAdmin']);
 
-        $this->render(
-            'login.php',
-            [],
-            'Login page'
-        );
-
+        header('Location:/');
+        exit;
     }
 
 }
