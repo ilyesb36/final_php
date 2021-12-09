@@ -25,9 +25,12 @@ class Router
                         $params[$param] = $_GET[$param];
                     }
                 }
+                print("TYPE REQ");
+                var_dump($_SERVER['REQUEST_METHOD']);
+                var_dump($params);
+                var_dump($action);
                 return new $controllerClass($action, $params,$_SERVER['REQUEST_METHOD'] );
             }
-            // $_SERVER['REQUEST_METHOD']
 
         }
 

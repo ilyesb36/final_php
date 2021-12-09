@@ -10,7 +10,7 @@ use App\Manager\AuthorManager;
 class SecurityController extends BaseController
 {
 
-    public function executeIndex()
+    public function getLogin()
     {
         $authors = new AuthorManager(PDOFactory::getMysqlConnection());
 
@@ -22,7 +22,7 @@ class SecurityController extends BaseController
 
     }
 
-    public function executeLogin()
+    public function postLogin()
     {
 
         $authors = new AuthorManager(PDOFactory::getMysqlConnection());
@@ -38,7 +38,7 @@ class SecurityController extends BaseController
         );
         
     }
-    public function executeLogout()
+    public function postLogout()
     {
 
         unset($_SESSION['isAuthor']);
