@@ -8,11 +8,11 @@ abstract class BaseController
     private $viewsDir = './Views/Frontend/';
     protected $params;
 
-    public function __construct(string $action, array $params = [])
+    public function __construct(string $action, array $params = [], string $method = 'get')
     {
         $this->params = $params;
 
-        $method = 'execute' . ucfirst($action);
+        $method = strtolower($method) . ucfirst($action);
         if (is_callable([$this, $method])) {
             $this->$method();
         }
@@ -23,7 +23,7 @@ abstract class BaseController
         $view = $this->viewsDir . $template;
 
         foreach ($arguments as $key => $value) {
-            ${$key} = $value; 
+            ${$key} = $value;
         }
 
 

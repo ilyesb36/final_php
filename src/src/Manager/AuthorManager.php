@@ -64,11 +64,11 @@ class AuthorManager extends BaseManager
         $result->bindValue(':mdp', $mdp, PDO::PARAM_STR);
         $result->execute();
 
-        var_dump($result); 
-
-        if ($result->rowCount() > 1) {
+        if ($result->rowCount() > 0) {
+            print("ADMIN" . $result->rowCount());
             return true;
         } else {
+            print("ADMIN" . $result->rowCount());
             return false;
         }
     }
@@ -81,12 +81,12 @@ class AuthorManager extends BaseManager
         $result->bindValue(':mdp', $mdp, PDO::PARAM_INT);
         $result->execute();
 
-        var_dump($result);
-        die;   
 
-        if ($result->rowCount() > 1) {
+        if ($result->rowCount() > 0) {
+            print("USER" . $result->rowCount());
             return true;
         } else {
+            print("USER" . $result->rowCount());
             return false;
         }
     }

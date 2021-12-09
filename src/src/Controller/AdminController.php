@@ -10,7 +10,7 @@ use App\Manager\AuthorManager;
 class AdminController extends BaseController
 {
 
-    public function executeIndex()
+    public function getIndex()
     {
         $manager = new AuthorManager(PDOFactory::getMysqlConnection());
 

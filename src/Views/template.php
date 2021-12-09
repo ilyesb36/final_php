@@ -28,8 +28,12 @@
 
 
             <div class="text-end">
+                <?php if ($_SESSION["isAuthor"]== FALSE) : ?>
                 <a href="/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
                 <a href="/register"><button type="button" class="btn btn-warning">Sign-up</button></a>
+                <?php else: ?>
+                    <a href="/logout"><button type="button" class="btn btn-outline-light me-2">Log out</button></a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
