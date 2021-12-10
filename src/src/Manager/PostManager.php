@@ -39,15 +39,15 @@ class PostManager extends BaseManager
         return $result->execute();
     }
 
-    public function updatePost(Post $post)
+    public function updatePost($titre, $texte, $date, $idauthor, $id)
     {
-        $req = "UPDATE `post` SET `titre`=':titre',`texte`=':texte',`date`=`:date`,`idauthor`=`:idauthor`, WHERE id=:id";
+        $req = "UPDATE `post` SET `titre`=:titre,`texte`=:texte,`date`=:date,`idauthor`=:idauthor WHERE id=:id";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':titre', $post->getTitre(), PDO::PARAM_STR);
-        $result->bindValue(':texte', $post->getTexte(), PDO::PARAM_STR);
-        $result->bindValue(':date', $post->getDate(), PDO::PARAM_STR);
-        $result->bindValue(':idauthor', $post->getIdUser(), PDO::PARAM_INT);
-        $result->bindValue(':id', $post->getId(), PDO::PARAM_INT);
+        $result->bindValue(':titre', $titre, PDO::PARAM_STR);
+        $result->bindValue(':texte', $texte, PDO::PARAM_STR);
+        $result->bindValue(':date', $date, PDO::PARAM_STR);
+        $result->bindValue(':idauthor', $idauthor, PDO::PARAM_INT);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);
         return $result->execute();
     }
 

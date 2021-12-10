@@ -54,6 +54,33 @@ class PostController extends BaseController
         header('Location:/');
     }
 
+    public function getUpdate()
+    {
+
+        $this->render(
+            'update.php',
+            [],
+            'Update page'
+        );
+    }
+
+    public function postUpdate()
+    {
+
+        /** @var PostManager $postManager */
+        $postManager = PostManager::getInstance();
+
+        $idPost = $this->params['id'];
+        $titre = $_POST["titre"] ?? NULL;
+        $texte = $_POST["texte"] ?? NULL;
+        $date =  date('Y-m-d H:i:s');
+        $idAuth = $_SESSION["perId"] ?? NULL;
+
+        $postManager->updatePost($titre, $texte, $date, $idAuth, $idPost);
+
+        header('Location:/');
+    }
+
     public function getAuthor()
     {
         $this->render(
