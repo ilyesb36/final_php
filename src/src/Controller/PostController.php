@@ -67,8 +67,9 @@ class PostController extends BaseController
 
         $titre = $_POST["titre"] ?? NULL;
         $texte = $_POST["texte"] ?? NULL;
+        $idAuth = $_SESSION["perId"] ?? NULL;
 
-        $post = new Post($titre, $texte);
+        $post = new Post($titre, $texte, $idAuth);
 
         $posts->addPost($post);
         header('Location:/');

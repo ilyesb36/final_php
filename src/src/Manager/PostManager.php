@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 use App\Entity\Post;
+use PDO;
 
 class PostManager extends BaseManager
 {
@@ -40,8 +41,7 @@ class PostManager extends BaseManager
         $result->bindValue(':titre', $post->getTitre(), PDO::PARAM_STR);
         $result->bindValue(':texte', $post->getTexte(), PDO::PARAM_STR);
         $result->bindValue(':date', $post->getDate(), PDO::PARAM_STR);
-        $result->bindValue(':idauthor', $post->getIdUser(), PDO::PARAM_INT);
-        $result->bindValue(':id', $post->getId(), PDO::PARAM_INT);
+        $result->bindValue(':idauthor', $post->getIdAuthor(), PDO::PARAM_INT);
         return $result->execute();
     }
 

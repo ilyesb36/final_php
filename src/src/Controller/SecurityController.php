@@ -39,6 +39,7 @@ class SecurityController extends BaseController
         }
 
         $authors->addAuthor($firstname, $lastname, $pseudo, $email, $admin, $pw);
+
         $_SESSION["isAuthor"] = 1;
         $_SESSION["isAdmin"] = $authors->isAdmin($pseudo, $pw);
         header('Location:/');
