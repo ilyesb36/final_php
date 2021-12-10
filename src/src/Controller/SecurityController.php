@@ -37,9 +37,7 @@ class SecurityController extends BaseController
             $admin = 0;
         }
 
-        $auth = new Author($firstname,$lastname, $pseudo, $email, $pw, $admin);
-
-        $authors->addAuthor($auth);
+        $authors->addAuthor($firstname, $lastname, $pseudo, $email, $admin, $pw);
         $_SESSION["isAuthor"] = 1;
         $_SESSION["isAdmin"] = $authors->isAdmin($pseudo, $pw);
         header('Location:/');
@@ -63,9 +61,8 @@ class SecurityController extends BaseController
         $_SESSION["isAuthor"] = $authors->userExist($_POST["pseudo"], $_POST["password"]);
         $_SESSION["isAdmin"] = $authors->isAdmin($_POST["pseudo"], $_POST["password"]);
 
-        var_dump($_SESSION["perId"]);
-        // header('Location:/');
-        // exit;
+        header('Location:/');
+        exit;
     }
 
     public function getLogout()
