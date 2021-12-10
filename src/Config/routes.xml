@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <routes>
+    <!--POST CONTROLLER-->
     <route path="/" action="index" controller="PostController"/>
     <route path="show" action="show" controller="PostController" params="id"/>
     <route path="author" action="author" controller="PostController"/>
+    <route path="dashboard" action="dashboard" controller="PostController"/>
 
     <!--SECURITY CONTROLLER-->
     <route path="login" action="login" controller="SecurityController"/>

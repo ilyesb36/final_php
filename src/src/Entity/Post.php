@@ -8,7 +8,13 @@ class Post {
     private string $titre;
     private string $texte;
     private DateTime $date;
-    private int $idauthor;
+
+    public function __construct($titre, $texte)
+    {
+        $this->setTitre($titre);
+        $this->setTexte($texte);
+        $this->setDate();
+    }
 
     public function getId(){
         return $this->id;
@@ -36,15 +42,9 @@ class Post {
         return $this->date;
     }
 
-    public function setDate(DateTime $date){
-        $this->date = $date;
-    }
-    public function getIdUser(){
-        return $this->idauthor;
+    public function setDate(){
+        $this->date = date('Y-m-d H:i:s');
     }
 
-    public function setIdUser(int $idauthor){
-        $this->idauthor = $idauthor;
-    }
 
 }

@@ -33,7 +33,9 @@
                 <a href="/register"><button type="button" class="btn btn-warning">Sign-up</button></a>
                 <?php else: ?>
                     <a href="/logout"><button type="button" class="btn btn-outline-light me-2">Log out</button></a>
+                    <a href="/dashboard"><button type="button" class="btn btn-outline-light me-2">Mettre en ligne un post</button></a>
                 <?php endif; ?>
+
             </div>
         </div>
     </div>

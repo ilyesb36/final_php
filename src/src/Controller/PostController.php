@@ -61,8 +61,16 @@ class PostController extends BaseController
 
     }
 
-    public function postDashboard(Type $var = null)
+    public function postDashboard()
     {
-        die('caca');
+        $posts = new PostManager(PDOFactory::getMysqlConnection());
+
+        $titre = $_POST["titre"] ?? NULL;
+        $texte = $_POST["texte"] ?? NULL;
+
+        $post = new Post($titre, $texte);
+
+        $posts->addPost($post);
+        header('Location:/');
     }
 }

@@ -24,11 +24,12 @@ class SecurityController extends BaseController
     {
         $authors = new AuthorManager(PDOFactory::getMysqlConnection());
 
-        $firstname = $_POST["firstname"];
-        $lastname = $_POST["lastname"];
-        $pseudo = $_POST["pseudo"];
-        $email = $_POST["email"];
-        $pw = $_POST["pw"];
+
+        $firstname = $_POST["firstname"] ?? NULL;
+        $lastname = $_POST["lastname"] ?? NULL;
+        $pseudo = $_POST["pseudo"] ?? NULL;
+        $email = $_POST["email"] ?? NULL;
+        $pw = $_POST["pw"] ?? NULL;
 
         if(!empty($_POST['admin'])) {
             $admin = 1;

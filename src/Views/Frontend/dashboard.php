@@ -5,11 +5,11 @@
 <div>
     <form method="post" action="">
         <p>
-        	<label value = "Title"> Intitulé du post: </label><input type = "text" name="postName"></input>
+        	<label value = "Title"> Intitulé du post: </label><input type = "text" name="titre"></input>
         </p>
         <p>
         	<label value ="Content"> Contenu </label></br>
-        	<textarea name = "postContent" rows= "10" cols= "60"></textarea>
+        	<textarea name = "texte" rows= "10" cols= "60"></textarea>
         </p>
         <p>
         	<input type= "submit" value= "Poster" ></input>
