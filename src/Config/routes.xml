@@ -6,6 +6,7 @@
     <route path="show" action="show" controller="PostController" params="id"/>
     <route path="author" action="author" controller="PostController"/>
     <route path="dashboard" action="dashboard" controller="PostController"/>
+    <route path="delete" action="delete" controller="PostController" params="id"/>
 
     <!--SECURITY CONTROLLER-->
     <route path="login" action="login" controller="SecurityController"/>

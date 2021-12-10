@@ -25,8 +25,9 @@ class PostManager extends BaseManager
         $result = $this->bdd->query($req);
         $result->execute();
 
+        $result->setFetchMode(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, Post::class);
         return $result->fetchAll(\PDO::FETCH_FUNC,function ($id,$titre,$texte,$date, $idauthor){
-            return $this->hydrate(['id'=> $id,'titre' =>$titre,'texte' => $texte,'date' =>$date, 'idauthor' => $idauthor]);
+            return $this->hydrate(compact(['id','titre','texte','date','idauthor']));
         });
     }
 
@@ -50,14 +51,14 @@ class PostManager extends BaseManager
         return $result->execute();
     }
 
-    public function addPost(Post $post)
+    public function addPost($titre, $texte, $date, $idauthor)
     {
         $req="INSERT INTO `post`(`titre`, `texte`, `date`, `idauthor`) VALUES (:titre,:texte,:date,:idauthor)";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':titre', $post->getTitre(), PDO::PARAM_STR);
-        $result->bindValue(':texte', $post->getTexte(), PDO::PARAM_STR);
-        $result->bindValue(':date', $post->getDate(), PDO::PARAM_STR);
-        $result->bindValue(':idauthor', $post->getIdAuthor(), PDO::PARAM_INT);
+        $result->bindValue(':titre', $titre, PDO::PARAM_STR);
+        $result->bindValue(':texte', $texte, PDO::PARAM_STR);
+        $result->bindValue(':date', $date, PDO::PARAM_STR);
+        $result->bindValue(':idauthor', $idauthor, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -71,9 +72,8 @@ class PostManager extends BaseManager
 
     function hydrate($args)
     {
-        extract($args);
-        $p = new Post($id,$titre,$texte,$date);
-        $p->setAuthor($this->authorManager->getAuthorById($idauthor));
+        $p = new Post($args);
+        $p->setAuthor($this->authorManager->getAuthorById($args['idauthor']));
         return $p;
     }
 }

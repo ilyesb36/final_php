@@ -6,6 +6,7 @@ use App\Entity\Author;
 use App\Fram\Factories\PDOFactory;
 use App\Fram\Utils\Flash;
 use App\Manager\AuthorManager;
+use App\Manager\PostManager;
 
 class SecurityController extends BaseController
 {
@@ -22,8 +23,8 @@ class SecurityController extends BaseController
 
     public function postRegister()
     {
-        $authors = new AuthorManager(PDOFactory::getMysqlConnection());
-
+        /** @var AuthorManager $authors */
+        $authors = AuthorManager::getInstance();
 
         $firstname = $_POST["firstname"] ?? NULL;
         $lastname = $_POST["lastname"] ?? NULL;
@@ -58,7 +59,8 @@ class SecurityController extends BaseController
     public function postLogin()
     {
 
-        $authors = new AuthorManager(PDOFactory::getMysqlConnection());
+        /** @var AuthorManager $authorManager */
+        $authors = AuthorManager::getInstance();
 
         $_SESSION["isAuthor"] = $authors->userExist($_POST["pseudo"], $_POST["password"]);
         $_SESSION["isAdmin"] = $authors->isAdmin($_POST["pseudo"], $_POST["password"]);

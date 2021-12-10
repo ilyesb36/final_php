@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Manager\AuthorManager;
 use App\Manager\PostManager;
 use App\Entity\Post;
 use App\Fram\Factories\PDOFactory;
@@ -41,6 +42,17 @@ class PostController extends BaseController
             'Show Page'
         );
     }
+    public function getDelete()
+    {
+
+        /** @var PostManager $postManager */
+        $postManager = PostManager::getInstance();
+        $idPost = $this->params['id'];
+
+        $postManager->deletePost($idPost);
+
+        header('Location:/');
+    }
 
     public function getAuthor()
     {
@@ -64,15 +76,15 @@ class PostController extends BaseController
 
     public function postDashboard()
     {
-        $posts = new PostManager();
+        /** @var PostManager $postManager */
+        $posts = PostManager::getInstance();
 
         $titre = $_POST["titre"] ?? NULL;
         $texte = $_POST["texte"] ?? NULL;
         $idAuth = $_SESSION["perId"] ?? NULL;
+        $date =  date('Y-m-d H:i:s');
 
-        $post = new Post($titre, $texte, $idAuth);
-
-        $posts->addPost($post);
+        $posts->addPost($titre, $texte,$date, $idAuth);
         header('Location:/');
     }
 }

@@ -7,6 +7,7 @@ use PDO;
 
 class AuthorManager extends BaseManager
 {
+
     public function getAllAuthors()
     {
         $req = "SELECT * FROM user";
@@ -99,10 +100,7 @@ class AuthorManager extends BaseManager
 
     function hydrate($args)
     {
-        extract($args);
-
-        $a = new Author($id,$firstname,$lastname,$pseudo,$email,$password,$admin);
-        return $a;
+        return new Author($args);
     }
 }
 

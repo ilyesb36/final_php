@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Entity;
+
+
+use App\Entity\Entity;
+
 use DateTime;
-class Post {
+class Post extends Entity{
 
     private int $id;
     private string $titre;
@@ -11,6 +15,7 @@ class Post {
     private int $idAuthor;
     private Author $author;
 
+    /*
     public function __construct($id, $titre, $texte, $idAuthor)
     {
         $this->setId($id);
@@ -19,6 +24,7 @@ class Post {
         $this->setDate();
         $this->setIdAuthor($idAuthor);
     }
+    */
 
 
     public function setId($id){
@@ -66,8 +72,8 @@ class Post {
         return $this->date;
     }
 
-    public function setDate(){
-        $this->date = date('Y-m-d H:i:s');
+    public function setDate($date){
+        $this->date = $date;
     }
 
 

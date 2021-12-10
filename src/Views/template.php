@@ -54,7 +54,11 @@
 <?php endif; ?>
 
 <div class="container">
-    <?php if($_SESSION["isAuthor"] == 1):
+    <?php
+    if($_SESSION["isAuthor"] == 1):
+        if($_SESSION["isAdmin"] == 1):
+            echo "Admin + ";
+        endif;
     echo "Tu es l'utilisateur numéro " .$_SESSION["perId"] ;
     endif ;?>
     <?= $content?>
