@@ -12,7 +12,6 @@ class AdminController extends BaseController
 
     public function getIndex()
     {
-        $manager = new AuthorManager(PDOFactory::getMysqlConnection());
 
         $this->render(
             'home.php',

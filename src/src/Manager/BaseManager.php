@@ -12,7 +12,7 @@ abstract class BaseManager
     {
         $this->bdd = PDOFactory::getMysqlConnection();
     }
-
+// Fait par Jérémie, non par moi peeposad
     final public static function getInstance()
     {
         static $instances = array();

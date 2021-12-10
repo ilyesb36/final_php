@@ -111,7 +111,16 @@ class PostController extends BaseController
         $idAuth = $_SESSION["perId"] ?? NULL;
         $date =  date('Y-m-d H:i:s');
 
-        $posts->addPost($titre, $texte,$date, $idAuth);
+        $image = basename($_FILES["uploadedFile"]["name"]);
+        $source = fopen($_FILES["uploadedFile"]["tmp_name"], 'r');
+        $dest = fopen(dirname(__DIR__, 2) . '/upload/' . $image, 'wb');
+        stream_copy_to_stream($source, $dest);
+        fclose($source);
+        fclose($dest);
+
+        $newpath = dirname(__DIR__, 2) . '/upload/' . $image;
+
+        $posts->addPost($titre, $texte,$newpath, $date, $idAuth);
         header('Location:/');
     }
 }

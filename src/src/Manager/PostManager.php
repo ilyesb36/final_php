@@ -26,8 +26,8 @@ class PostManager extends BaseManager
         $result->execute();
 
         $result->setFetchMode(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, Post::class);
-        return $result->fetchAll(\PDO::FETCH_FUNC,function ($id,$titre,$texte,$date, $idauthor){
-            return $this->hydrate(compact(['id','titre','texte','date','idauthor']));
+        return $result->fetchAll(\PDO::FETCH_FUNC,function ($id,$titre,$texte,$image,$date, $idauthor){
+            return $this->hydrate(compact(['id','titre','texte','image','date','idauthor']));
         });
     }
 
@@ -51,12 +51,13 @@ class PostManager extends BaseManager
         return $result->execute();
     }
 
-    public function addPost($titre, $texte, $date, $idauthor)
+    public function addPost($titre, $texte, $image, $date, $idauthor)
     {
-        $req="INSERT INTO `post`(`titre`, `texte`, `date`, `idauthor`) VALUES (:titre,:texte,:date,:idauthor)";
+        $req="INSERT INTO `post`(`titre`, `texte`,`image`, `date`, `idauthor`) VALUES (:titre,:texte,:image, :date,:idauthor)";
         $result = $this->bdd->prepare($req);
         $result->bindValue(':titre', $titre, PDO::PARAM_STR);
         $result->bindValue(':texte', $texte, PDO::PARAM_STR);
+        $result->bindValue(':image', $image, PDO::PARAM_STR);
         $result->bindValue(':date', $date, PDO::PARAM_STR);
         $result->bindValue(':idauthor', $idauthor, PDO::PARAM_INT);
         return $result->execute();

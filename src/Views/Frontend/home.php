@@ -15,6 +15,7 @@ foreach($posts as $post){
 
     echo '<a href="/update/' . $post->getId() . '"<button type="button" class="btn btn-warning">Modifier</button></a>';
     echo '<a href="/delete/' . $post->getId() . '"<button type="button" class="btn btn-warning">Delete</button></a>';
+    echo '<img alt="" src="' . $post->getImage(). '">';
     echo "<br> --------------------------------------- <br>";
 
 }
