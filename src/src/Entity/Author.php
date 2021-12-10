@@ -12,14 +12,23 @@ class Author
     private int $admin;
     private int $id;
 
-    public function __construct($firstName, $lastName, $pseudo, $email, $password, $admin)
+    public function __construct($id,$firstName, $lastName, $pseudo, $email, $password, $admin)
     {
+        $this->setId($id);
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
         $this->setPseudo($pseudo);
         $this->setEmail($email);
         $this->setPassword($password);
         $this->setAdmin($admin);
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
 

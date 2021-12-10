@@ -9,13 +9,21 @@ class Post {
     private string $texte;
     private string $date;
     private int $idAuthor;
+    private Author $author;
 
-    public function __construct($titre, $texte, $idAuthor)
+    public function __construct($id, $titre, $texte, $idAuthor)
     {
+        $this->setId($id);
         $this->setTitre($titre);
         $this->setTexte($texte);
         $this->setDate();
         $this->setIdAuthor($idAuthor);
+    }
+
+
+    public function setId($id){
+        $this->id = $id;
+        return $this;
     }
 
     public function getId(){
@@ -29,6 +37,15 @@ class Post {
 
     public function setIdAuthor(int $idAuthor){
         $this->idAuthor = $idAuthor;
+    }
+
+    public function setAuthor(Author $author){
+        $this->author = $author;
+        return $this;
+    }
+
+    public function getAuthor(){
+        return $this->author;
     }
 
     public function getTitre(){

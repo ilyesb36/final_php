@@ -6,12 +6,28 @@ use PDO;
 
 class PostManager extends BaseManager
 {
+
+    /** @var AuthorManager */
+    protected $authorManager;
+
+    /** For dependency injection next step */
+    public function __construct()
+    {
+        $this->authorManager = AuthorManager::getInstance();
+        parent::__construct();
+    }
+
+
+
     public function getAllPosts()
     {
         $req = "SELECT * FROM post";
         $result = $this->bdd->query($req);
         $result->execute();
-        return $result->fetchAll();
+
+        return $result->fetchAll(\PDO::FETCH_FUNC,function ($id,$titre,$texte,$date, $idauthor){
+            return $this->hydrate(['id'=> $id,'titre' =>$titre,'texte' => $texte,'date' =>$date, 'idauthor' => $idauthor]);
+        });
     }
 
     public function getPostById(int $id)
@@ -51,6 +67,14 @@ class PostManager extends BaseManager
         $result = $this->bdd->prepare($req);
         $result->bindValue(':id', $id, PDO::PARAM_INT);
         return $result->execute();
+    }
+
+    function hydrate($args)
+    {
+        extract($args);
+        $p = new Post($id,$titre,$texte,$date);
+        $p->setAuthor($this->authorManager->getAuthorById($idauthor));
+        return $p;
     }
 }
 

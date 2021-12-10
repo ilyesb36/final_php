@@ -15,7 +15,8 @@ class PostController extends BaseController
      */
     public function getIndex()
     {
-        $postManager = new PostManager(PDOFactory::getMysqlConnection());
+        /** @var PostManager $postManager */
+        $postManager = PostManager::getInstance();
         $content = $postManager->getAllPosts();
 
         $this->render(
@@ -63,7 +64,7 @@ class PostController extends BaseController
 
     public function postDashboard()
     {
-        $posts = new PostManager(PDOFactory::getMysqlConnection());
+        $posts = new PostManager();
 
         $titre = $_POST["titre"] ?? NULL;
         $texte = $_POST["texte"] ?? NULL;

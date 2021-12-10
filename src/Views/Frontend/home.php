@@ -8,7 +8,7 @@
 
 <h3> POST(S) </h3><? 
 foreach($posts as $post){
-        echo $post['titre'] . '<br>' . $post['texte'] . '<br>' . $post['date'] . '<br><br>'; 
+    var_dump($post);die();
 }
 
 ?>

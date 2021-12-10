@@ -16,10 +16,12 @@ class AuthorManager extends BaseManager
 
     public function getAuthorById(int $id)
     {
-        $req = "SELECT * FROM user where i  d=:id";
+        $req = "SELECT * FROM user where id = :id";
         $result = $this->bdd->prepare($req);
-        $result->bindValue(':id', $id, PDO::PARAM_INT);
-        return $result->execute();
+        $result->bindValue(':id', $id, \PDO::PARAM_INT);
+        $result->execute();
+
+        return $this->hydrate($result->fetch(\PDO::FETCH_ASSOC));
     }
 
     public function updateAuthor($firstname, $lastname, $pseudo, $admin,$email, $password, $id)
@@ -31,7 +33,7 @@ class AuthorManager extends BaseManager
         $result->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         $result->bindValue(':admin', $admin, PDO::PARAM_INT);
         $result->bindValue(':password', $password, PDO::PARAM_STR);
-        $result->bindValue(':email', $author->$email, PDO::PARAM_STR);
+        $result->bindValue(':email', $email, PDO::PARAM_STR);
         $result->bindValue(':id', $id, PDO::PARAM_INT);
         return $result->execute();
     }
@@ -93,6 +95,14 @@ class AuthorManager extends BaseManager
         } else {
             return false;
         }
+    }
+
+    function hydrate($args)
+    {
+        extract($args);
+
+        $a = new Author($id,$firstname,$lastname,$pseudo,$email,$password,$admin);
+        return $a;
     }
 }
 
